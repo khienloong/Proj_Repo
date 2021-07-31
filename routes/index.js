@@ -103,8 +103,8 @@ router.post("/set-point_post", (req, res, next) => {
 		if(err) res.send("\r\n Couldn't update set_points\r\n");
 		res.send("data updated");
 		conn.release();
-		})
-	}
+		});
+	});
 /*router.get("/set-points_get", (req, res, next) => {	
    // var conn = mysql.createConnection({
 const pool = mysql.createPool({
