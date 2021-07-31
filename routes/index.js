@@ -115,7 +115,7 @@ router.post("/current_temp_post", (req, res, next) =>{
 	
 	var time = req.body.time;
 	var temp = req.body.temp;
-	var status = req.params.status;
+	var status = req.body.status;
 
 	pool.getConnection((err, conn)=> {
 	if(err) throw err;
@@ -159,7 +159,7 @@ router.post("/Action_post", (req, res, next) =>{
 	pool.getConnection((err, conn) => {
 	if(err) throw err;
 		
-		var sql = "INSERT INTO Action (status, time) VALUES ("+time+","+status+")";
+		var sql = "INSERT INTO Action (time, status) VALUES ("+time+","+status+")";
 		
 		conn.query(sql, (err, result) => {
 		if(err) throw err;
