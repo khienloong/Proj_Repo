@@ -86,7 +86,7 @@ router.post("/set-point_post", (req, res, next) => {
 	pool.getConnection((err, conn) => {
 	if(err) throw err;
 
-		var sql = "UPDATE set_points SET time = " + time1 + ", temp1 = " + temp1 + ", temp2 = " + temp2;
+		var sql = "UPDATE set_points SET time = '" + time1 + "', temp1 = '" + temp1 + "', temp2 = '" + temp2;"')"
 		conn.query(sql, (err, result) => {
 		if(err) res.send("\r\n Couldn't update set_points\r\n");
 		res.send("data updated");
@@ -120,7 +120,7 @@ router.post("/current_temp_post", (req, res, next) =>{
 	pool.getConnection((err, conn)=> {
 	if(err) throw err;
 		
-	var sql = "INSERT INTO current_temp(time, temp, status) VALUES('"+time+"',"+temp+",'"+status+"')";
+	var sql = "INSERT INTO current_temp (time, temp, status) VALUES ('"+time+"',"+temp+",'"+status+"')";
 		conn.query(sql, (err, result) => {
 		if(err) throw err;
 		res.send('Record inserted');
@@ -140,7 +140,7 @@ router.post("/set_points_post", (req, res, next) =>{
 	pool.getConnection((err, conn) => {
 	if(err) throw err;
 		
-		var sql = "INSERT INTO set_points(temp1, temp2, time1, time2, time3) VALUES("+temp1+","+temp2+","+time1+","+time2+","+time3+")";
+		var sql = "INSERT INTO set_points(temp1, temp2, time1, time2, time3) VALUES('"+temp1+"','"+temp2+"','"+time1+"','"+time2+"','"+time3+"')";
 		
 		conn.query(sql, (err, result) => {
 		if(err) throw err;
@@ -159,7 +159,7 @@ router.post("/Action_post", (req, res, next) =>{
 	pool.getConnection((err, conn) => {
 	if(err) throw err;
 		
-		var sql = "INSERT INTO Action (time, status) VALUES ("+time+","+status+")";
+		var sql = "INSERT INTO Action (time, status) VALUES ('"+time+"','"+status+"')";
 		
 		conn.query(sql, (err, result) => {
 		if(err) throw err;
