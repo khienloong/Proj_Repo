@@ -191,7 +191,7 @@ router.post("/set_points_post", (req, res, next) =>{
 		if(err) throw err;
 		res.send('Record inserted');
 		conn.release();
-		}
+		});
 	});
 });
 
