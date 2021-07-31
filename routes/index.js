@@ -8,7 +8,7 @@ const pool = mysql.createPool({
 	user: "logo2",
 	password: "logologo",
 	database: "IoT_Project",
-})
+});
 
 //Set the image time
 router.get('/time_get', (req, res, next) => {
@@ -17,7 +17,7 @@ router.get('/time_get', (req, res, next) => {
 
 	const json = JSON.stringify(today);
 	res.send(json);
-})
+});
 
 router.get("/set-points_get", (req, res, next) => {
 
@@ -32,10 +32,10 @@ router.get("/set-points_get", (req, res, next) => {
 		const json = JSON.stringify(row);
 		res.send(json);
 		conn.release();
-		})
+		});
 
-	})
-}) 
+	});
+}); 
 
 
 router.get("/current_temp_get", (req, res, next) => {
@@ -51,10 +51,10 @@ router.get("/current_temp_get", (req, res, next) => {
 		const json = JSON.stringify(row);
 		res.send(json);
 		conn.release();
-		})
+		});
 
-	})
-})
+	});
+});
 
 
 router.get("/Action_get", (req, res, next) => {
@@ -70,31 +70,19 @@ router.get("/Action_get", (req, res, next) => {
 		const json = JSON.stringify(row);
 		res.send(json);
 		conn.release();
-		})
+		});
 
-	})
-})
+	});
+});
 
-
-//router.post('/set_points', (req, res, next) => {
-
-//}
 
 //Miguel's help, do for each table
 router.post("/set-point_post", (req, res, next) => {
-   // var conn = mysql.createConnection({
-  /*const pool = mysql.createPool({
-    host: "logo2.c8v6vdi8dcei.us-east-2.rds.amazonaws.com",
-    user: "logo2",
-    password: "logologo",
-    database: "IoT_Project",
-  });*/
 
 	var time1 = req.body.time1;
 	var temp1 = req.body.temp1;
 	var temp2 = req.body.temp2;
 
-//	conn.connect((err) => {
 	pool.getConnection((err, conn) => {
 	if(err) throw err;
 
@@ -104,25 +92,13 @@ router.post("/set-point_post", (req, res, next) => {
 		res.send("data updated");
 		conn.release();
 		});
-	});
-/*router.get("/set-points_get", (req, res, next) => {	
-   // var conn = mysql.createConnection({
-const pool = mysql.createPool({
-    connectionLimit : 100,
-    host: "logo2.c8v6vdi8dcei.us-east-2.rds.amazonaws.com",
-    user: "logo2",
-    password: "logologo",
-    database: "IoT_Project",
-    debug: false 	
-  });
-
-    conn.connect((err) => {
+	
 	    if(err) throw err;
 
 	    var sql = "SELECT * FROM set_points"; //selects all data in table
 	   // var sql = "SELECT * FROM set_points WHERE id = 1"; //gets a row from the table
-	    var sql = "SELECT time, temp1, temp2 FROM set_points"; //Gives specific colums for whole table
-	    var sql = "SELECT time, FROM set_points WHERE id = 1"; //Grabs specific column for a specific row
+	   // var sql = "SELECT time, temp1, temp2 FROM set_points"; //Gives specific colums for whole table
+	   // var sql = "SELECT time, FROM set_points WHERE id = 1"; //Grabs specific column for a specific row
 
 	    conn.query(sql, (err, result) =>
 	    { 
@@ -130,28 +106,17 @@ const pool = mysql.createPool({
 		    var rows = JSON.stringify(result);
 		    res.send(rows);
 
-	     })
-    })
-}) */
+	     });
+    });
+}); 
 
 //Do one of these for each of the tables
 router.post("/current_temp_post", (req, res, next) =>{
-//    var conn = mysql.createConnection({
-   
-/*const pool = mysql.createPool({
-    connectionLimit : 100,
-    host: "logo2.c8v6vdi8dcei.us-east-2.rds.amazonaws.com",
-    user: "logo2",
-    password: "logologo",
-    database: "IoT_Project",
-    debug: false 	
-  });*/
 	
 	var time = req.body.time;
 	var temp = req.body.temp;
 	var status = req.params.status;
 
-//	conn.connect((err) => {
 	pool.getConnection((err, conn)=> {
 	if(err) throw err;
 		
@@ -162,18 +127,9 @@ router.post("/current_temp_post", (req, res, next) =>{
 		conn.release();
 		});	
 });
+});
 
 router.post("/set_points_post", (req, res, next) =>{
-//    var conn = mysql.createConnection({
- 
-/*const pool = mysql.createPool({
-    connectionLimit : 100,
-    host: "logo2.c8v6vdi8dcei.us-east-2.rds.amazonaws.com",
-    user: "logo2",
-    password: "logologo",
-    database: "IoT_Project",
-    debug: false 	
-  });*/
 	
 	var temp1 = req.body.temp1;
 	var temp2 = req.body.temp2;
@@ -181,7 +137,6 @@ router.post("/set_points_post", (req, res, next) =>{
 	var time2 = req.body.time2;
 	var time3 = req.body.time3;
 
-//	conn.connect((err) => {
 	pool.getConnection((err, conn) => {
 	if(err) throw err;
 		
@@ -196,24 +151,15 @@ router.post("/set_points_post", (req, res, next) =>{
 });
 
 router.post("/Action_post", (req, res, next) =>{
-//    var conn = mysql.createConnection({
- 
-/*const pool = mysql.createPool({
-    connectionLimit : 100,
-    host: "logo2.c8v6vdi8dcei.us-east-2.rds.amazonaws.com",
-    user: "logo2",
-    password: "logologo",
-    database: "IoT_Project",
-  });*/
 	
 	var time = req.body.time;
 	var status = req.body.status;
 
-//	conn.connect((err) => 
+ 
 	pool.getConnection((err, conn) => {
 	if(err) throw err;
 		
-		var sql = "INSERT INTO current_temp(status, time) VALUES("+time+","+status+")";
+		var sql = "INSERT INTO Action (status, time) VALUES ("+time+","+status+")";
 		
 		conn.query(sql, (err, result) => {
 		if(err) throw err;
