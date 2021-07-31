@@ -120,7 +120,7 @@ router.post("/current_temp_post", (req, res, next) =>{
 	pool.getConnection((err, conn)=> {
 	if(err) throw err;
 		
-	var sql = "INSERT INTO current_temp(temp, status, time) VALUES("+time+","+temp+","+status+")";
+	var sql = "INSERT INTO current_temp(time, temp, status) VALUES('"+time+"',"+temp+",'"+status+"')";
 		conn.query(sql, (err, result) => {
 		if(err) throw err;
 		res.send('Record inserted');
