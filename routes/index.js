@@ -185,6 +185,9 @@ router.post("/", (req, res, next) => {
 			var time1 = rows[0]["time1"];
 			var time2 = rows[0]["time2"];
 			var time3 = rows[0]["time3"];
+			temp1 = parseFloat(temp1);
+			temp2 = parseFloat(temp2);
+
 
 			var today = new Date();
 			today.setHours(today.getHours() - 6);
