@@ -69,7 +69,7 @@ void doPost(char* myString)
 
         curl_easy_setopt(curl, CURLOPT_URL, URL);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, message);
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, read_callback);
+        //curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, read_callback);
         res = curl_easy_perform(curl);
 
         if (res != CURLE_OK)
