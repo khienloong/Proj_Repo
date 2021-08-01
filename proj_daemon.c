@@ -45,7 +45,7 @@ static void _signal_handler(const int signal) {
   }
 }
 
-void doPost(char* url, char* myString)
+void doPost(char* myString)
 {
     CURL* curl;
     CURLcode res;
@@ -110,7 +110,7 @@ size_t data(char* buffer, size_t itemSize, size_t nItems, void* ignore)
 }
 
 //function to read from temperature file
-void read_temp()
+char* read_temp()
 {
     
     FILE* temperature;
@@ -120,6 +120,7 @@ void read_temp()
     fscanf(temperature, "%s", buff);
     fclose(temperature);
     syslog(LOG_INFO, "The temperature is %s", buff);
+    return buff;
 
 }
 
@@ -154,13 +155,15 @@ static void _do_work(void) {
   int morning_int;
   int min_morning;
 
+  char* temperature;
 
   while(1==1)
   {
       doGet(set_points_get);
       syslog(LOG_INFO, "This works!");
       
-      read_temp();
+      temperature = read_temp();
+      doPost(temperature);
 
       /*fptr = fopen("/var/log/project", "rb");
       fseek(fptr, 0, SEEK_END);
