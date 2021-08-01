@@ -147,6 +147,7 @@ static void _do_work(void) {
   while(1==1)
   {
       doGet(set_points_get);
+      syslog(LOG_INFO, "This works!");
 
       /*fptr = fopen("/var/log/project", "rb");
       fseek(fptr, 0, SEEK_END);
