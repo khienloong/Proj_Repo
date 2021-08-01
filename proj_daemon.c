@@ -190,7 +190,7 @@ syslog(LOG_INFO, "current temp: %d\n",current_temp);
 //try to write to the heater
 fptr = fopen("/var/log/status","w");
 fprintf(fptr,"OFF : %i:%i:%i",chrono_counter->tm_hour,chrono_counter->tm_min,chrono_counter->tm_sec);
-fclose(fptr);
+fclose(fptr); */
 sleep(1);
   }
 }
@@ -236,4 +236,4 @@ int main(void) {
 
   return ERR_WTF;
 
-} */
+} 
