@@ -177,6 +177,7 @@ router.post("/", (req, res, next) => {
 	pool.getConnection((err, conn) => {
 		if (err) throw err;
 		var sql = "Select * from set_points";
+		var heater_status
 		conn.query(sql, (err, result) => {
 			if (err) throw err;
 			var rows = JSON.parse(JSON.stringify(result));
@@ -193,11 +194,11 @@ router.post("/", (req, res, next) => {
 			today.setHours(today.getHours() - 6);
 
 			if (temp < temp1) {
-				var heater_status = "ON";
+				heater_status = "ON";
 			};
 
 			if (temp > temp2) {
-				var heater_status = "OFF";
+				heater_status = "OFF";
 			};
 
 			heater_status = JSON.stringify(heater_status);
