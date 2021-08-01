@@ -57,7 +57,7 @@ void doPost(char* myString)
     curl = curl_easy_init();
     if (curl) {
 
-        curl_easy_setopt(curl, CURLOPT_URL, url);
+        curl_easy_setopt(curl, CURLOPT_URL, URL);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, message);
         res = curl_easy_perform(curl);
 
@@ -114,7 +114,7 @@ char* read_temp()
 {
     
     FILE* temperature;
-    char buff[255];
+    char* buff;
 
     temperature = fopen("/var/log/temp", "r");
     fscanf(temperature, "%s", buff);
@@ -155,15 +155,15 @@ static void _do_work(void) {
   int morning_int;
   int min_morning;
 
-  char* temperature;
+  char* temp;
 
   while(1==1)
   {
       doGet(set_points_get);
       syslog(LOG_INFO, "This works!");
       
-      temperature = read_temp();
-      doPost(temperature);
+      temp = read_temp();
+      doPost(temp);
 
       /*fptr = fopen("/var/log/project", "rb");
       fseek(fptr, 0, SEEK_END);
