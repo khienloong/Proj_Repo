@@ -159,6 +159,8 @@ static void _do_work(void) {
   {
       doGet(set_points_get);
       syslog(LOG_INFO, "This works!");
+      
+      read_temp();
 
       /*fptr = fopen("/var/log/project", "rb");
       fseek(fptr, 0, SEEK_END);
