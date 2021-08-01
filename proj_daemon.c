@@ -45,7 +45,7 @@ static void _signal_handler(const int signal) {
   }
 }
 
-/*void read_callback(char* buffer, size_t itemSize, size_t nItems, void* ignore)
+void read_callback(char* buffer, size_t itemSize, size_t nItems, void* ignore)
 {
     FILE* temp_ptr;
     //size_t bytes = itemSize * nItems;
@@ -54,7 +54,7 @@ static void _signal_handler(const int signal) {
     fclose(temp_ptr);
     syslog(LOG_INFO, "Status is %s", buffer);
    
-}*/
+}
 void doPost(char* myString)
 {
     CURL* curl;
@@ -69,7 +69,7 @@ void doPost(char* myString)
 
         curl_easy_setopt(curl, CURLOPT_URL, URL);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, message);
-        //curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, read_callback);
+        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, read_callback);
         res = curl_easy_perform(curl);
 
         if (res != CURLE_OK)
@@ -96,9 +96,9 @@ void doGet(char* url)
     {
         curl_easy_setopt(curl, CURLOPT_URL, url);
 
-        curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
+        //curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1L);
 
-        curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, data);
+        //curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, data);
 
         res = curl_easy_perform(curl);
 
@@ -140,7 +140,7 @@ char* read_temp()
 
 static void _do_work(void) {
   time_t time_current;
-  struct tm *chrono_counter;
+ /* struct tm* chrono_counter;
   FILE *fptr;
 
   int current_temp;
@@ -166,7 +166,7 @@ static void _do_work(void) {
   int set_tmp;
   char* hrs_morning;
   int morning_int;
-  int min_morning;
+  int min_morning;*/
 
   char* temp;
 

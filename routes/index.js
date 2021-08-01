@@ -21,7 +21,9 @@ router.get('/time_get', (req, res, next) => {
 
 router.get("/set-points_get", (req, res, next) => {
 
-	pool.getConnection((err, conn) => {
+	res.send("Temperature");
+
+	/*pool.getConnection((err, conn) => {
 	if(err) throw err;
 	var sql = "SELECT * FROM set_points";
 
@@ -34,7 +36,7 @@ router.get("/set-points_get", (req, res, next) => {
 		conn.release();
 		});
 
-	});
+	}); */
 }); 
 
 
