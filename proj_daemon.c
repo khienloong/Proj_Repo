@@ -140,7 +140,7 @@ char* read_temp()
 
 static void _do_work(void) {
   time_t time_current;
- /* struct tm* chrono_counter;
+ struct tm* chrono_counter;
   FILE *fptr;
 
   int current_temp;
@@ -166,7 +166,7 @@ static void _do_work(void) {
   int set_tmp;
   char* hrs_morning;
   int morning_int;
-  int min_morning;*/
+  int min_morning;
 
   char* temp;
 

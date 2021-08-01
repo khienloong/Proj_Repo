@@ -172,7 +172,7 @@ router.post("/Action_post", (req, res, next) =>{
 });
 
 
-/*router.post("/", (req, res, next) => {
+router.post("/", (req, res, next) => {
 
 	var temp = req.body.str;
 
@@ -211,6 +211,6 @@ router.post("/Action_post", (req, res, next) =>{
 	});
 
 });
-*/
+
 
 module.exports = router;
