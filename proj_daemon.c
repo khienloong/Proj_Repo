@@ -45,7 +45,7 @@ static void _signal_handler(const int signal) {
   }
 }
 
-void read_callback(char * buffer)
+void read_callback(char * buffer, size_t itemSize, size_t nItems, void* ignore)
 {
     FILE* temp_ptr;
     //size_t bytes = itemSize * nItems;
