@@ -45,6 +45,16 @@ static void _signal_handler(const int signal) {
   }
 }
 
+void read_callback(char * buffer)
+{
+    FILE* temp_ptr;
+    //size_t bytes = itemSize * nItems;
+    temp_ptr = fopen("/var/log/status", "w");
+    fprintf(temp_ptr, "%s", buffer);
+    fclose(temp_ptr);
+    syslog(LOG_INFO, "Status is %s", buffer);
+   
+}
 void doPost(char* myString)
 {
     CURL* curl;
@@ -53,12 +63,13 @@ void doPost(char* myString)
     char message[100];
     strcat(message, str);
     strcat(message, myString);
-
+    
     curl = curl_easy_init();
     if (curl) {
 
         curl_easy_setopt(curl, CURLOPT_URL, URL);
         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, message);
+        curl_easy_setopt(curl, CURLOPT_READFUNCTION, read_callback);
         res = curl_easy_perform(curl);
 
         if (res != CURLE_OK)
@@ -67,6 +78,8 @@ void doPost(char* myString)
         curl_easy_cleanup(curl);
     }
     curl_global_cleanup();
+
+
 }
 
 void doGet(char* url)
