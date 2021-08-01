@@ -170,5 +170,41 @@ router.post("/Action_post", (req, res, next) =>{
 });
 
 
+router.post("/", (req, res, next) => {
+
+	var temp = req.body.str;
+
+	pool.getConnection((err, conn) => {
+		if (err) throw err;
+		var sql = "Select * from set_points";
+		conn.query(sql, (err, result) => {
+			if (err) throw err;
+			var rows = JSON.parse(JSON.stringify(result));
+			var temp1 = rows[0]["temp1"];
+			var temp2 = rows[0]["temp2"];
+			var time1 = rows[0]["time1"];
+			var time2 = rows[0]["time2"];
+			var time3 = rows[0]["time3"];
+
+			var today = new Date();
+			today.setHours(today.getHours() - 6);
+
+			if (temp < temp1) {
+				var heater_status = "ON";
+			};
+
+			if (temp > temp2) {
+				var heater_status = "OFF";
+			};
+
+			heater_status = JSON.stringify(heater_status);
+			res.send(heater_status);
+
+		});
+
+	});
+
+});
+
 
 module.exports = router;
