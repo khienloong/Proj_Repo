@@ -146,9 +146,9 @@ static void _do_work(void) {
 
   while(1==1)
   {
-      doGet_http(set_points_get);
+      doGet(set_points_get);
 
-      fptr = fopen("/var/log/project", "rb");
+      /*fptr = fopen("/var/log/project", "rb");
       fseek(fptr, 0, SEEK_END);
       length = ftell(fptr);
       fseek(fptr, 0, SEEK_SET);
@@ -236,4 +236,4 @@ int main(void) {
 
   return ERR_WTF;
 
-}
+} */
