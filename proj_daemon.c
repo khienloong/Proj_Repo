@@ -12,6 +12,7 @@
 #include <syslog.h>
 #include <string.h>
 #include <time.h>
+#include <curl/curl.h>
 #undef _POSIX_SOURCE
 
 #define OK	   1
