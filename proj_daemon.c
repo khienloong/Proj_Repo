@@ -109,9 +109,19 @@ size_t data(char* buffer, size_t itemSize, size_t nItems, void* ignore)
 
 }
 
+//function to read from temperature file
+void read_temp()
+{
+    
+    FILE* temperature;
+    char buff[255];
 
+    temperature = fopen("/var/log/temp", "r");
+    fscanf(temperature, "%s", buff);
+    fclose(temperature);
+    syslog(LOG_INFO, "The temperature is %s", buff);
 
-
+}
 
 
 static void _do_work(void) {
@@ -143,6 +153,7 @@ static void _do_work(void) {
   char* hrs_morning;
   int morning_int;
   int min_morning;
+
 
   while(1==1)
   {
