@@ -29,7 +29,6 @@
 #define action_get "http://ec2-18-117-105-80.us-east-2.compute.amazonaws.com:3000/Action_get"
 #define set_points_post "http://ec2-18-117-105-80.us-east-2.compute.amazonaws.com:3000/set-point_post"
 #define current_temp_post "http://ec2-18-117-105-80.us-east-2.compute.amazonaws.com:3000/current_temp_post"
-#define set_points_post "http://ec2-18-117-105-80.us-east-2.compute.amazonaws.com:3000/set_points_post"
 #define action_post "http://ec2-18-117-105-80.us-east-2.compute.amazonaws.com:3000/Action_post"
 
 static void _signal_handler(const int signal) {
@@ -74,7 +73,7 @@ void doGet(char* url)
 {
     curl_global_init(CURL_GLOBAL_ALL);
 
-
+    char* data;
     CURL* curl;
     CURLcode res;
 
@@ -143,7 +142,7 @@ static void _do_work(void) {
   int set_tmp;
   char* hrs_morning;
   int morning_int;
-  int min_morning
+  int min_morning;
 
   while(1==1)
   {
